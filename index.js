@@ -1,47 +1,63 @@
-const admissionForm = document.querySelector('form');
+// 1. Elements ko select karna
+const planSelect = document.getElementById('planSelect');
+const lockerCheckbox = document.getElementById('lockerCheckbox');
+const totalDisplay = document.getElementById('totalDisplay');
 const paymentSection = document.getElementById('paymentSection');
 const finalAmountDisplay = document.getElementById('finalAmountDisplay');
 const whatsappLink = document.getElementById('whatsappLink');
+const admissionForm = document.querySelector('form');
 
-admissionForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Browser ko reload hone se rokne ke liye
-
-    // 1. Pehle Total Calculate karein
+// 2. LIVE Calculation Function (Jo turant ₹0 ko change karega)
+function calculateTotal() {
     let total = 0;
-    const planValue = document.getElementById('planSelect').value;
+    const planValue = planSelect.value;
+    
     if (planValue === "4h") total = 400;
     else if (planValue === "6h") total = 600;
     else if (planValue === "8h") total = 800;
 
-    if (document.getElementById('lockerCheckbox').checked) {
+    if (lockerCheckbox.checked) {
         total += 100;
     }
+    
+    // Upar wala display update karein
+    totalDisplay.innerText = "Total Amount: ₹" + total;
+    return total; // Ye value submit function ko dega
+}
 
-    // 2. Data ko Email (Formspree) par bhejien background mein
+// Event Listeners for Live Update
+planSelect.addEventListener('change', calculateTotal);
+lockerCheckbox.addEventListener('change', calculateTotal);
+
+// 3. SUBMIT Function (Email + QR Display)
+admissionForm.addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const currentTotal = calculateTotal(); // Final amount nikalna
     const formData = new FormData(this);
     
+    // Email bhejna (Background mein)
     fetch(this.action, {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
     }).then(response => {
         if (response.ok) {
-            // Agar email chali gayi, toh ye karein:
-            alert("Success! Details saved. Please complete payment below.");
+            alert("Registration Successful! Now complete your payment.");
             
-            // 3. QR Section dikhayein
+            // Payment box dikhana
             paymentSection.style.display = "block";
-            finalAmountDisplay.innerText = "Total Amount: ₹" + total;
+            finalAmountDisplay.innerText = "Total Amount: ₹" + currentTotal;
 
-            // 4. WhatsApp Link update karein
+            // WhatsApp Message setup
             const sName = document.getElementById('fName').value;
-            const msg = `Hello! I am ${sName}. My total fee is ₹${total}. Here is my screenshot.`;
+            const msg = `Hello! I am ${sName}. Registered for ${planSelect.value} shift. Total fee: ₹${currentTotal}.`;
             whatsappLink.href = `https://wa.me/91YOUR_NUMBER?text=${encodeURIComponent(msg)}`;
 
-            // 5. Niche scroll karein
+            // Niche scroll karna
             paymentSection.scrollIntoView({ behavior: 'smooth' });
         } else {
-            alert("Oops! Email sending failed. Try again.");
+            alert("Something went wrong with the form submission.");
         }
     });
 });
