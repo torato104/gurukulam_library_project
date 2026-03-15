@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library & Study Center</title>
+    <link rel="stylesheet" href="my_project1.css">
+</head>
+
+<body>
+    <header>
+        <h1>Gurukulam Library</h1>
+        <p>Pdhega jehanabad, tabhi to aage bdhega jehanabad!</p>
+    </header>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#fees">Fees</a></li>
+                <li><a href="#admission">Admission</a></li>
+            </ul>
+        </nav>
+
+        <hr>
+        <main id="about">
+            <section>
+                <h2>Why choose us?</h2>
+                <ul>
+                    <li><b>High Speed Wifi</b></li>
+                    <li><i>Personal Charging Point</i></li>
+                    <li>Silent Zone <u>Deep Work</u></li>
+                    <li>RO Water</li>
+                    <li>Daily Newspaper(english & hindi) & Magazine</li>
+                    <li>Locker Facility</li>
+                    <li>AC</li>
+                    <li>Career Guidance by toppers</li>
+                    <li>Separate room for boys and girls</li>
+                    <li>Spacious cabin</li>
+                </ul>
+            </section>
+            <section id="pricing">
+                <h2>Membership Plans(Fees)</h2>
+                <table border="1" width="auto" height="auto">
+                    <thead>
+                        <tr>
+                            <th>Plan Name</th>
+                            <th>Shift Time</th>
+                            <th>Monthly Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Light Mode</td>
+                            <td>4 Hours Slot <li>06 AM - 10 AM</li>
+                                <li>10 AM - 02 PM</li>
+                                <li>02 PM - 06 PM</li>
+                                <li>06 PM - 10 PM</li>
+                            </td>
+                            <td>Rs 400</td>
+                        </tr>
+                        <tr>
+                            <td>Basic Mode</td>
+                            <td>6 Hours Special Slot <li>08 AM - 02 PM</li>
+                                <li>02 PM - 08 PM</li>
+                                <li>06 PM - 12 PM</li>
+                            </td>
+                            <td>Rs 600</td>
+                        </tr>
+                        <tr>
+                            <td>Deep Mode</td>
+                            <td>8 Hours Slot</td>
+                            <td>Rs 800</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="admission">
+                <h2>New Admission Form</h2>
+                <fieldset>
+                    <legend>Student Registration</legend>
+
+                    <form action="https://formspree.io/f/mnjgbllb" method="POST"><label for="fName">Full
+                            Name</label><br><input type="text" id="fName" name="fName" placeholder="Type your name"
+                            required> <br><br><label>Gender</label><input type="radio" name="gen" value="M">Male
+                        <input type="radio" name="gen" value="F">Female <br><br><label>Select Shift</label><select
+                            name="plan" id="planSelect">
+                            <option value="plan">Select Your Plan</option>
+                            <option value="4h">4 Hour</option>
+                            <option value="6h">6 Hour</option>
+                            <option value="8h">8 Hour</option>
+                        </select> <br><br><label>Additional Services</label><br>
+                        <input type="checkbox" id="lockerCheckbox" name="service" value="locker"><label
+                            for="locker">Locker
+                            Facility
+                            (Rs 100 Extra)</label><br><br>
+                        <h3 id="totalDisplay">Total Amount: ₹0</h3>
+                        <button type="submit">Proceed to Payment</button><br>
+                    </form>
+                </fieldset>
+                <div id="paymentSection"
+                    style="display: none; margin-top: 30px; padding: 20px; border: 2px dashed #28a745; background-color: #f9fff9; text-align: center;">
+                    <h2 style="color: #28a745;">Final Step: Complete Payment</h2>
+                    <h3 id="finalAmountDisplay" style="font-size: 24px;">Total Amount: ₹0</h3>
+
+                    <p>Niche diye gaye QR code ko scan karke payment karein:</p>
+                    <img src="my_qr_code.png" alt="Payment QR" width="200"
+                        style="border: 5px solid #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+
+                    <div style="margin-top: 20px;">
+                        <p>Payment karne ke baad screenshot niche diye gaye button par click karke bhejein:</p>
+                        <a id="whatsappLink" href="#" target="_blank"
+                            style="display: inline-block; background-color: #25D366; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px;">
+                            WhatsApp Screenshot 📱
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2026 Gurukulam Library. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
