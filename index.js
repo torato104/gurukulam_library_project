@@ -52,7 +52,7 @@ admissionForm.addEventListener('submit', function(event) {
             // WhatsApp Message setup
             const sName = document.getElementById('fName').value;
             const msg = `Hello! I am ${sName}. Registered for ${planSelect.value} shift. Total fee: ₹${currentTotal}.`;
-            whatsappLink.href = `https://wa.me/91YOUR_NUMBER?text=${encodeURIComponent(msg)}`;
+            whatsappLink.href = `https://wa.me/919693851806?text=${encodeURIComponent(msg)}`;
 
             // Niche scroll karna
             paymentSection.scrollIntoView({ behavior: 'smooth' });
